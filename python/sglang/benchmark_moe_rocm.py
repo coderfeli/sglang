@@ -14,7 +14,9 @@ from sglang.srt.layers.moe.topk import select_experts
 
 from sglang.srt.utils import permute_weight
 from sglang.srt.layers.moe.fused_moe_triton.fused_moe import fused_experts
-from sglang.srt.layers.moe.fused_moe_ck.fused_moe import fused_experts_ck
+# from sglang.srt.layers.moe.fused_moe_ck.fused_moe import fused_experts_ck
+import ater
+from ater.fused_moe import fused_experts_ck
 
 padding_size = 128 if bool(int(os.getenv("MOE_PADDING", "0"))) else 0
 
