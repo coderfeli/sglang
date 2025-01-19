@@ -21,7 +21,7 @@ from ater.fused_moe import fused_experts_ck
 padding_size = 128 if bool(int(os.getenv("MOE_PADDING", "0"))) else 0
 
 
-def checkAllclose(a, b, rtol=1e-1, atol=1e-1, msg=''):
+def checkAllclose(a, b, rtol=1e-2, atol=1e-2, msg=''):
     isClose = torch.isclose(a, b, rtol=rtol, atol=atol)
     mask = ~isClose
     if isClose.all():
@@ -138,7 +138,7 @@ def run_test(bs, model, tp_size, dtype_str: str):
     #w1b = permute_weight(w1)
     #w2b = permute_weight(w2)
 
-    w1b = shuffle_weight_gateup(w1)
+    w1b = shuffle_weight(w1)
     w2b = shuffle_weight(w2)
 
     w1_scale = None
